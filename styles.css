@@ -1,0 +1,15 @@
+button {
+    height: 30px;
+    width: 30px;
+    outline: none;
+}
+
+.wrapper {
+    width: 250px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.title {
+    font-weight: bold;
+}
