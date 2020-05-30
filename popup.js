@@ -7,15 +7,33 @@
 const updateButton = document.getElementById('updateButton')
 const addButton = document.getElementById('urlAddButton')
 const urlInput = document.getElementById('urlInput')
+const listItem = document.getElementById('listItem')
 
 updateButton.onclick = async () => {
   console.log('updating')
   let data = await fetchingUrl()
-  console.log(data)
 }
 
 addButton.onclick = () => {
-  console.log(urlInput.value)
+  let data = urlInput.value
+  saveToSyncStorage(data)
+}
+
+listItem.onclick = () => {
+  chrome.tabs.create({url: "http://www.stackoverflow.com"})
+}
+
+const saveToSyncStorage = (data) => {
+  chrome.storage.sync.set({key: data}, function() {
+    console.log('Value is set to ' + data);
+  })
+}
+
+const getFromSyncStorage = () => {
+  chrome.storage.sync.get(['key'], function(result) {
+    console.log('Value currently is ' + result.key)
+    return result.key
+  })
 }
 
 const fetchingUrl = async () => {
@@ -40,19 +58,3 @@ const fetchingUrl = async () => {
     }
   return data
 }
-// let changeColor = document.getElementById('changeColor');
-
-// chrome.storage.sync.get('color', function(data) {
-//   changeColor.style.backgroundColor = data.color;
-//   changeColor.setAttribute('value', data.color);
-// });
-
-// changeColor.onclick = function(element) {
-//   let color = element.target.value;
-//   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-//     chrome.tabs.executeScript(
-//         tabs[0].id,
-//         {code: 'document.body.style.backgroundColor = "' + color + '";'});
-//   });
-// };
-

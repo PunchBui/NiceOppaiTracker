@@ -2,7 +2,7 @@
   "name": "Nice Oppai Trackker",
   "version": "1.0",
   "description": "An Extension that track nice oppai manga",
-  "permissions": ["activeTab", "declarativeContent", "storage"],
+  "permissions": ["activeTab", "declarativeContent", "storage", "tabs"],
   "options_page": "options.html",
   "background": {
     "scripts": ["background.js"],
